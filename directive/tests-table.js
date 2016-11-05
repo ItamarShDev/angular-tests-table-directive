@@ -22,9 +22,10 @@ angular.module("TestsTable", [])
                             indexKey = key;
                         }
                     }
-                    var arr = this.tableData[key];
-                    for (var obj in arr) {
-                        this.headers.push(arr[obj].name)
+                    var arr = this.tableData[indexKey];
+                    for (var idx in arr) {
+                        if (this.headers.indexOf(arr[idx].name) == -1)
+                            this.headers.push(arr[idx].name)
                     }
                 }
                 this.getProperty = function (arr, key) {
