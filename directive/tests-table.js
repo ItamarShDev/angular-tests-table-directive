@@ -24,8 +24,8 @@ angular.module("TestsTable", [])
                     }
                     var arr = this.tableData[indexKey];
                     for (var idx in arr) {
-                        if (this.headers.indexOf(arr[idx].name) == -1)
-                            this.headers.push(arr[idx].name)
+                        //                        if (this.headers.indexOf(arr[idx].name) == -1)
+                        this.headers.push(arr[idx].name)
                     }
                 }
                 this.getProperty = function (arr, key) {
@@ -37,7 +37,7 @@ angular.module("TestsTable", [])
                 }
             },
             controllerAs: 'ctrl',
-            template: '<table ng-if="ctrl.mainColName&&ctrl.tableData" ng-init="ctrl.getHeaders()"><tr><th>{{ctrl.mainColName}}</th><th ng-repeat="header in ctrl.headers">{{header}}</th></tr><tr ng-repeat="(key, name) in ctrl.tableData"><td>{{key}}</td><td ng-repeat="header in ctrl.headers">{{ctrl.getProperty(name, header)}}</td></tr></table>',
+            template: '<table ng-if="ctrl.mainColName&&ctrl.tableData" ng-init="ctrl.getHeaders()"><tr><th>{{ctrl.mainColName}}</th><th ng-repeat="header in ctrl.headers track by $index">{{header}}</th></tr><tr ng-repeat="(key, name) in ctrl.tableData"><td>{{key}}</td><td ng-repeat="header in ctrl.headers track by $index">{{ctrl.getProperty(name, header)}}</td></tr></table>',
             bindToController: true
 
         }
